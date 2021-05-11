@@ -1,3 +1,14 @@
+import pandas as pd
+import numpy as np
+import seaborn as sb
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LinearRegression
+import matplotlib.pyplot as matply
+
+import pywebio
+from pywebio.input import input, FLOAT
+from pywebio.output import put_text
+
 def bmi4():
     datos=pd.read_csv("original.csv",header=0)
     X=datos[['resid_area','air_qual','room_num','age','dist1','dist2','dist3','dist4']]
@@ -6,7 +17,6 @@ def bmi4():
     lr=LinearRegression()
     lr.fit(X_train,Y_train)
     prediccion=lr.predict(X_test)
-def bmi3():
     resi=input("Ingresa el area",type=FLOAT)
     air=input("Ingresa el air_qual",type=FLOAT)
     room=input("Ingresa el room_num",type=FLOAT)
@@ -18,5 +28,4 @@ def bmi3():
     resp=lr.predict([[resi,air,room,age,dist1,dist2,dist3,dist4]])
     put_text("La respuesta es: " + str(resp))
 if __name__ == '__main__':
-    bmi2()
-    bmi3()
+    bmi4()
